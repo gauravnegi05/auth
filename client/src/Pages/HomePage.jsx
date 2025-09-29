@@ -27,6 +27,7 @@ const HomePage = () => {
         >
           Sign Up
         </Link>
+        
       </div>
     </div>
   );

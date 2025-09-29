@@ -1,24 +1,22 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import api from "../api";
 
 const LoginPage = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [form, setForm] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
-  const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
-
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', formData);
-      localStorage.setItem('token', res.data.token);
+      const res = await api.post("/login", form);
+      localStorage.setItem("token", res.data.token);
       navigate("/dashboard");
     } catch (err) {
-      console.log(err.response.data);
+      alert(err.response?.data?.message || "Login failed");
     }
-  }
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-500 to-indigo-600">
@@ -37,8 +35,8 @@ const LoginPage = () => {
                 name="email"
               placeholder="Enter your email"
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={formData.email}
-              onChange={handleChange}
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
               required
             />
           </div>
@@ -51,8 +49,8 @@ const LoginPage = () => {
                 name="password"
               placeholder="Enter your password"
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={formData.password}
-              onChange={handleChange}
+              value={form.password}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
               required
             />
           </div>
