@@ -22,8 +22,8 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
-      <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md text-center">
+    <div className="min-h-screen bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center p-4">
+      <div className="bg-yellow-300 border-2 border-black shadow-xl rounded-2xl p-8 w-full max-w-md text-center">
         {user ? (
           <>
             <h2 className="text-3xl font-semibold text-gray-800 mb-4">
